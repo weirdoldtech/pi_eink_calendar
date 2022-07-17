@@ -4,14 +4,15 @@ A way to display Google calendar items (or anything) on a waveshare e-ink displa
 
 This code is split into two parts:
 
-1) Connects to Google Calendar and retreives the most recent calendar items and stores them in a text file.
+1) todo_pull_v1.py - Connects to Google Calendar and retreives the most recent calendar items and stores them in a text file.
 2) Retrives the text file from a network location, and displays the content on the waveshare e-ink display.
 
-I've chosen to run these two parts separately on two different computers, because while testing, when envoking the Google Calendar api steps, I needed to re-validate the user login on occassion. This was difficult on a headless raspberry pi, as there was no GUI to accomplish this. You can remotely connect to it via VNC etc. but it's very slow on a pi zero. Consequently, I've been running the Calendar retrieve steps on a Windows PC via task scheduler, which is always on in my setup. The file is saved on a NAS which both the Windows PC and the raspberry pi can access. Every 30 minutes or so the Calendar items are refreshed, and every 40 minutes or so the raspberry pi gets the latest file and displays it on the e-ink display.
+I've chosen to run these two parts separately on two different computers, because while testing, when envoking the Google Calendar api steps, I needed to re-validate the user login on occassion. This was difficult on a headless raspberry pi, as there was no GUI to accomplish this. You can remotely connect to it via VNC etc. but it's very slow on a pi zero. Consequently, I've been running the Calendar retrieve steps (todo_pull_v1.py) on a Windows PC via task scheduler, which is always on in my setup. The file is saved on a NAS which both the Windows PC and the raspberry pi can access. Every hour or so the Calendar items are refreshed, and every 40 minutes or so the raspberry pi gets the latest file and displays it on the e-ink display.
 
 A beautiful diagram to show data flow
+======================================
 
-Google Calendar -> retrieve Calender.py -> saves file in NAS -> Nas file -> raspberry pi -> e-ink display
+Google Calendar -> todo_pull_v1.py -> saves file to todo_pull_v1.py folder -> in NAS -> Nas file -> raspberry pi -> e-ink display
 
 For added flair and because I'm a big Poirot fan, I display an image of the Belgian sleuth to increase the chance I'll actually do the task on the board. It also serves to display an error if the file can't be retrieved. Another Piorot!
 
