@@ -70,28 +70,14 @@ x = datetime.now()
 titleBar = x.strftime("%A") + " " + x.strftime("%d") + " " + x.strftime("%B")
 draw.text((5,5),str(titleBar), font = font36, fill = 0)
 if errorMode == False:
-	
-	
-	poirot = Image.open('/home/pi/project_todo/ok.png')
-	Himage.paste(poirot,(520,150))
+
+	#Image to display if connection worked
+	Himage.paste(Image.open('/home/pi/project_todo/ok.png'),(520,150))
 	
 else:
 	draw.text((270,270),"Mon dieu! Cannot connect!", font = font28, fill = 0)
-	poirot = Image.open('/home/pi/project_todo/cantconnect.png')
-	Himage.paste(poirot,(-10,150))
+	#Image to display if connection didn't work
+	Himage.paste(Image.open('/home/pi/project_todo/cantconnect.png'),(-10,150))
 
 epd.display(epd.getbuffer(Himage))
 epd.sleep()
-#exit = 1
-
-
-
-
-#except IOError as e:
-#logging.info(e)
-    
-#except KeyboardInterrupt:    
-#    logging.info("ctrl + c:")
-#    epd7in5_V2.epdconfig.module_exit()
-#    exit()
-
