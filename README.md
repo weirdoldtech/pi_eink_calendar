@@ -1,11 +1,14 @@
 # pi_eink_calendar
 A way to display Google calendar items (or anything) on a waveshare e-ink display using python on a raspberry pi
 
+Please note: this readme needs a lot of updating, and I promise I'll get around to it, I surely will...so please watch the youtube video instead, because it covers it in a great deal more detail.
+
+Cheers!
 
 This code is split into two parts:
 
 1) todo_pull_v1.py - Connects to Google Calendar and retreives the most recent calendar items and stores them in a text file.
-2) Retrives the text file from a network location, and displays the content on the waveshare e-ink display.
+2) todo_display.py Retrives the text file from a network location, and displays the content on the waveshare e-ink display.
 
 I've chosen to run these two parts separately on two different computers, because while testing, when envoking the Google Calendar api steps, I needed to re-validate the user login on occassion. This was difficult on a headless raspberry pi, as there was no GUI to accomplish this. You can remotely connect to it via VNC etc. but it's very slow on a pi zero. Consequently, I've been running the Calendar retrieve steps (todo_pull_v1.py) on a Windows PC via task scheduler, which is always on in my setup. The file is saved on a NAS which both the Windows PC and the raspberry pi can access. Every hour or so the Calendar items are refreshed, and every 40 minutes or so the raspberry pi gets the latest file and displays it on the e-ink display.
 
